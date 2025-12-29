@@ -1,0 +1,58 @@
+{
+  "name": "vue-intent",
+  "version": "0.1.0",
+  "description": "Vue 3 adapter for Behavior Runtime Core",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --config vite.example.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage",
+    "type-check": "vue-tsc --noEmit",
+    "lint": "eslint src/**/*.{ts,vue}"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0",
+    "vue-router": "^4.0.0",
+    "behavior-runtime-core": "^0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "behavior-runtime-core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/test-utils": "^2.4.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.19.0",
+    "@typescript-eslint/parser": "^8.19.0",
+    "eslint": "^8.56.0",
+    "jsdom": "^23.0.0",
+    "prettier": "^3.1.0",
+    "typescript": "5.3.3",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.7.0",
+    "vitest": "^1.0.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.0",
+    "vue-tsc": "^1.8.0"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "intent",
+    "behavior",
+    "runtime",
+    "state-management",
+    "permissions"
+  ],
+  "author": "",
+  "license": "MIT"
+}
