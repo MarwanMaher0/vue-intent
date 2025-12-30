@@ -139,4 +139,51 @@ describe('useIntent', () => {
       useIntent(intentWithoutSubscribe)
     }).not.toThrow()
   })
+
+  it('should support wait/block/reset/replay and reflect computed flags', () => {
+    const { state, isWaiting, isBlocked, isActive, wait, block, reset, replay } = useIntent(mockIntent)
+
+    expect(state.value).toBe('idle')
+    expect(isActive.value).toBe(false)
+
+    wait('because')
+    expect(state.value).toBe('waiting')
+    expect(isWaiting.value).toBe(true)
+
+    block('nope')
+    expect(state.value).toBe('blocked')
+    expect(isBlocked.value).toBe(true)
+
+    reset()
+    expect(state.value).toBe('idle')
+
+    replay()
+    expect(state.value).toBe('idle')
+  })
+
+  it('should pass arguments through to intent methods', () => {
+    const progressSpy = vi.fn()
+    const waitSpy = vi.fn()
+    const blockSpy = vi.fn()
+    const failSpy = vi.fn()
+
+    const argIntent = createMockIntent({
+      progress: progressSpy,
+      wait: waitSpy,
+      block: blockSpy,
+      fail: failSpy
+    })
+
+    const { progress, wait, block, fail } = useIntent(argIntent)
+
+    progress('step-xyz')
+    wait('reason-xyz')
+    block('blocked-xyz')
+    fail(new Error('boom'))
+
+    expect(progressSpy).toHaveBeenCalledWith('step-xyz')
+    expect(waitSpy).toHaveBeenCalledWith('reason-xyz')
+    expect(blockSpy).toHaveBeenCalledWith('blocked-xyz')
+    expect(failSpy).toHaveBeenCalledWith(expect.any(Error))
+  })
 })

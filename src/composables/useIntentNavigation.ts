@@ -1,4 +1,4 @@
-import { computed, onUnmounted, getCurrentInstance, type ComputedRef } from 'vue'
+import { computed, onUnmounted, getCurrentInstance, ref, type ComputedRef } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import type { Intent, IntentNavigationOptions } from '../types'
 
@@ -43,9 +43,25 @@ export function useIntentNavigation(
     onAfterLeave
   } = options
 
+  // Track intent state reactively when subscribe is available
+  const isActive = ref(intent.isActive())
+  const protectNavigation = ref(intent.protectNavigation())
+
+  const sync = () => {
+    isActive.value = intent.isActive()
+    protectNavigation.value = intent.protectNavigation()
+  }
+
+  let unsubscribe: (() => void) | undefined
+  if (intent.subscribe) {
+    unsubscribe = intent.subscribe(() => {
+      sync()
+    })
+  }
+
   // Computed properties
   const protectionActive = computed(() => {
-    return intent.protectNavigation() && intent.isActive()
+    return protectNavigation.value && isActive.value
   })
 
   const canLeave = computed(() => {
@@ -69,6 +85,9 @@ export function useIntentNavigation(
   // Cleanup on unmount
   if (getCurrentInstance()) {
     onUnmounted(() => {
+      if (unsubscribe) {
+        unsubscribe()
+      }
       if (typeof window !== 'undefined') {
         window.removeEventListener('beforeunload', handleBeforeUnload)
       }
@@ -80,6 +99,9 @@ export function useIntentNavigation(
     onBeforeRouteLeave(async (to, from, next) => {
       void to
       void from
+
+      // Ensure we check the latest intent status
+      sync()
       if (!protectionActive.value) {
         if (onAfterLeave) {
           onAfterLeave()

@@ -1,4 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { defineComponent } from 'vue'
+import { mount } from '@vue/test-utils'
 import { useIntentState } from '../../src/composables/useIntentState'
 import type { Intent, IntentState } from '../../src/types'
 
@@ -124,5 +126,26 @@ describe('useIntentState', () => {
     await new Promise(resolve => setTimeout(resolve, 150))
 
     expect(duration.value).toBeGreaterThan(0)
+  })
+
+  it('cleans up interval and subscription on unmount', () => {
+    const unsubscribe = vi.fn()
+    ;(mockIntent as any).subscribe = vi.fn(() => unsubscribe)
+
+    const clearSpy = vi.spyOn(globalThis, 'clearInterval')
+
+    const Comp = defineComponent({
+      template: `<div />`,
+      setup() {
+        useIntentState(mockIntent)
+        return {}
+      }
+    })
+
+    const wrapper = mount(Comp)
+    wrapper.unmount()
+
+    expect(unsubscribe).toHaveBeenCalled()
+    expect(clearSpy).toHaveBeenCalled()
   })
 })

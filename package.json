@@ -13,7 +13,7 @@
     "dev": "vite --config vite.example.config.ts",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest --coverage",
+    "test:coverage": "vitest run --coverage",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint src/**/*.{ts,vue}"
   },
@@ -53,6 +53,12 @@
     "state-management",
     "permissions"
   ],
-  "author": "",
+  "author": "MarwanMaher0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarwanMaher0/vue-intent"
+  },
+  "bugs": "https://github.com/MarwanMaher0/vue-intent/issues",
+  "homepage": "https://github.com/MarwanMaher0/vue-intent#readme",
   "license": "MIT"
 }

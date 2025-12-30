@@ -75,6 +75,30 @@ describe('IntentMessage', () => {
     expect(wrapper2.html()).toBe('<!--v-if-->')
   })
 
+  it('should show when blocked and hide otherwise', () => {
+    const blockedIntent = createMockIntent('blocked')
+    const idleIntent = createMockIntent('idle')
+
+    expect(
+      mount(IntentMessage, { props: { intent: blockedIntent, showWhen: 'blocked' } }).isVisible()
+    ).toBe(true)
+    expect(
+      mount(IntentMessage, { props: { intent: idleIntent, showWhen: 'blocked' } }).html()
+    ).toBe('<!--v-if-->')
+  })
+
+  it('should show when failed and hide otherwise', () => {
+    const failedIntent = createMockIntent('failed')
+    const idleIntent = createMockIntent('idle')
+
+    expect(
+      mount(IntentMessage, { props: { intent: failedIntent, showWhen: 'failed' } }).isVisible()
+    ).toBe(true)
+    expect(
+      mount(IntentMessage, { props: { intent: idleIntent, showWhen: 'failed' } }).html()
+    ).toBe('<!--v-if-->')
+  })
+
   it('should apply custom class', () => {
     const intent = createMockIntent()
     const wrapper = mount(IntentMessage, {
