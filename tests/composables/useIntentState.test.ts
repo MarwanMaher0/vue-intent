@@ -74,9 +74,9 @@ describe('useIntentState', () => {
 
   it('should track state transitions', () => {
     const { transitions, current } = useIntentState(mockIntent)
-    
+
     expect(transitions.value).toEqual(['idle'])
-    
+
     mockIntent.start()
     expect(current.value).toBe('started')
     expect(transitions.value).toContain('started')
@@ -84,30 +84,30 @@ describe('useIntentState', () => {
 
   it('should track previous state', () => {
     const { previous } = useIntentState(mockIntent)
-    
+
     expect(previous.value).toBe(null)
-    
+
     mockIntent.start()
     mockIntent.progress()
-    
+
     expect(previous.value).toBe('started')
   })
 
   it('should check if in specific state', () => {
     const { isIn } = useIntentState(mockIntent)
-    
+
     expect(isIn('idle')).toBe(true)
     expect(isIn('started')).toBe(false)
-    
+
     mockIntent.start()
     expect(isIn('started')).toBe(true)
   })
 
   it('should check if in multiple states', () => {
     const { isIn } = useIntentState(mockIntent)
-    
+
     expect(isIn(['idle', 'started'])).toBe(true)
-    
+
     mockIntent.complete()
     expect(isIn(['idle', 'started'])).toBe(false)
     expect(isIn(['completed', 'failed'])).toBe(true)
@@ -115,14 +115,14 @@ describe('useIntentState', () => {
 
   it('should track duration', async () => {
     const { duration } = useIntentState(mockIntent)
-    
+
     expect(duration.value).toBe(0)
-    
+
     mockIntent.start()
-    
+
     // Wait a bit and check duration increased
     await new Promise(resolve => setTimeout(resolve, 150))
-    
+
     expect(duration.value).toBeGreaterThan(0)
   })
 })

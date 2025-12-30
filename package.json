@@ -1,7 +1,7 @@
 {
-  "name": "vue-intent",
+  "name": "@marwan723876/vue-intention-core",
   "version": "0.1.0",
-  "description": "Vue 3 adapter for Behavior Runtime Core",
+  "description": "Behavior runtime for intent, state, permissions, and human-aware actions in Vue apps.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

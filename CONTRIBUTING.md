@@ -1,31 +1,36 @@
-# Contributing to vue-intent
+# Contributing to vue-intention
 
-Thank you for your interest in contributing to vue-intent! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to vue-intention! This document provides guidelines and instructions for contributing.
 
 ## Development Setup
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/your-org/vue-intent.git
-   cd vue-intent
+   git clone https://github.com/your-org/vue-intention.git
+   cd vue-intention
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Run tests**
+
    ```bash
    npm test
    ```
 
 4. **Run tests with coverage**
+
    ```bash
    npm run test:coverage
    ```
 
 5. **Build the package**
+
    ```bash
    npm run build
    ```
@@ -38,7 +43,7 @@ Thank you for your interest in contributing to vue-intent! This document provide
 ## Project Structure
 
 ```
-vue-intent/
+vue-intention/
 ├── src/
 │   ├── composables/        # Vue composables
 │   ├── components/         # Vue components
@@ -90,6 +95,7 @@ npm test -- --ui
    - Update documentation as needed
 
 3. **Ensure tests pass**
+
    ```bash
    npm test
    npm run type-check
@@ -117,7 +123,7 @@ npm test -- --ui
 When reporting bugs, please include:
 
 - Vue version
-- vue-intent version
+- vue-intention version
 - Browser/environment
 - Minimal reproduction code
 - Expected vs actual behavior

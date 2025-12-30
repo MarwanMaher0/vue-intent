@@ -75,7 +75,7 @@ describe('useIntent', () => {
 
   it('should track isActive computed property', () => {
     const { isActive, start } = useIntent(mockIntent)
-    
+
     expect(isActive.value).toBe(false)
     start()
     expect(isActive.value).toBe(true)
@@ -83,7 +83,7 @@ describe('useIntent', () => {
 
   it('should track isCompleted computed property', () => {
     const { isCompleted, complete } = useIntent(mockIntent)
-    
+
     expect(isCompleted.value).toBe(false)
     complete()
     expect(isCompleted.value).toBe(true)
@@ -91,7 +91,7 @@ describe('useIntent', () => {
 
   it('should track isFailed computed property', () => {
     const { isFailed, fail } = useIntent(mockIntent)
-    
+
     expect(isFailed.value).toBe(false)
     fail()
     expect(isFailed.value).toBe(true)
@@ -99,21 +99,21 @@ describe('useIntent', () => {
 
   it('should update state on start', () => {
     const { state, start } = useIntent(mockIntent)
-    
+
     start()
     expect(state.value).toBe('started')
   })
 
   it('should update state on progress', () => {
     const { state, progress } = useIntent(mockIntent)
-    
+
     progress('step-1')
     expect(state.value).toBe('in-progress')
   })
 
   it('should update state on complete', () => {
     const { state, complete } = useIntent(mockIntent)
-    
+
     complete()
     expect(state.value).toBe('completed')
   })
@@ -125,7 +125,7 @@ describe('useIntent', () => {
 
   it('should return human-readable message', () => {
     const { message, start } = useIntent(mockIntent)
-    
+
     expect(message.value).toBe('Intent is idle')
     start()
     expect(message.value).toBe('Intent is started')

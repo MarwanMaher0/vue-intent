@@ -15,16 +15,16 @@ export interface UseIntentNavigationReturn {
 
 /**
  * Composable for protecting navigation during active intents
- * 
+ *
  * @param intent - The intent to protect
  * @param options - Optional configuration
  * @returns Navigation state
- * 
+ *
  * @example
  * ```vue
  * <script setup>
- * import { useIntent, useIntentNavigation } from 'vue-intent'
- * 
+ * import { useIntent, useIntentNavigation } from 'vue-intention'
+ *
  * const uploadIntent = createIntent({ id: 'upload-file' })
  * const { isActive } = useIntent(uploadIntent)
  * const { canLeave } = useIntentNavigation(uploadIntent, {

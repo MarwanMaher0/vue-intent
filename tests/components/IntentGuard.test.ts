@@ -67,7 +67,7 @@ describe('IntentGuard', () => {
   it('should respect invert prop', () => {
     const intent = createMockIntent(true)
     const wrapper = mount(IntentGuard, {
-      props: { 
+      props: {
         intent,
         invert: true
       },
@@ -84,7 +84,7 @@ describe('IntentGuard', () => {
   it('should use custom fallback prop', () => {
     const intent = createMockIntent(false)
     const wrapper = mount(IntentGuard, {
-      props: { 
+      props: {
         intent,
         fallback: 'Custom message'
       },

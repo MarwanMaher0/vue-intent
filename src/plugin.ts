@@ -1,7 +1,6 @@
 import type { App, Plugin } from 'vue'
 import type { VueIntentPluginOptions } from './types'
 
-// Import components
 import IntentGuard from './components/IntentGuard.vue'
 import IntentMessage from './components/IntentMessage.vue'
 import IntentProgress from './components/IntentProgress.vue'
@@ -15,7 +14,7 @@ import { vIntent } from './directives/v-intent'
  * @example
  * ```typescript
  * import { createApp } from 'vue'
- * import { VueIntentPlugin } from 'vue-intent'
+ * import { VueIntentPlugin } from 'vue-intention'
  * 
  * const app = createApp(App)
  * app.use(VueIntentPlugin, {

@@ -1,12 +1,13 @@
-# vue-intent - Project Setup Guide
+# vue-intention - Project Setup Guide
 
 ## 🎉 Implementation Complete!
 
-The `vue-intent` package has been fully implemented according to the specification. This guide will help you get started with development, testing, and building.
+The `vue-intention` package has been fully implemented according to the specification. This guide will help you get started with development, testing, and building.
 
 ## 📦 What's Included
 
 ### Core Features
+
 - ✅ **Composables**
   - `useIntent` - Primary composable for consuming intent state
   - `useIntentNavigation` - Navigation protection during active intents
@@ -67,6 +68,7 @@ npm run build
 ```
 
 This creates:
+
 - `dist/index.mjs` - ES Module build
 - `dist/index.js` - CommonJS build
 - `dist/index.d.ts` - TypeScript declarations
@@ -155,15 +157,15 @@ Then open your browser to the displayed URL.
 
 ```typescript
 // Install the package
-npm install vue-intent behavior-runtime-core
+npm install vue-intention behavior-runtime-core
 ```
 
 ```vue
 <script setup lang="ts">
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent } from 'vue-intent'
+import { useIntent } from 'vue-intention'
 
-const saveIntent = createIntent({ 
+const saveIntent = createIntent({
   id: 'save-data',
   requires: ['data:write']
 })
@@ -178,11 +180,7 @@ async function handleSave() {
 </script>
 
 <template>
-  <button 
-    v-intent:loading="saveIntent" 
-    @click="handleSave"
-    :disabled="!allowed || isActive"
-  >
+  <button v-intent:loading="saveIntent" @click="handleSave" :disabled="!allowed || isActive">
     {{ isActive ? 'Saving...' : 'Save' }}
   </button>
 </template>
@@ -199,6 +197,7 @@ All core functionality is tested:
 - ✅ Reactivity and cleanup
 
 Run tests with:
+
 ```bash
 npm test
 ```
@@ -240,12 +239,14 @@ useIntentNavigation(uploadIntent, {
 ## 🎯 Next Steps
 
 ### For Development
+
 1. Install dependencies: `npm install`
 2. Run tests: `npm test`
 3. Build package: `npm run build`
 4. Try the example: `npm run dev`
 
 ### For Publishing
+
 1. Update version in `package.json`
 2. Update `CHANGELOG.md`
 3. Build: `npm run build`
@@ -253,9 +254,10 @@ useIntentNavigation(uploadIntent, {
 5. Publish: `npm publish`
 
 ### For Integration
+
 1. Ensure `behavior-runtime-core` is implemented
 2. Create intents using the core library
-3. Consume intents in Vue components with vue-intent
+3. Consume intents in Vue components with vue-intention
 4. Register the plugin globally or import composables as needed
 
 ## 📖 Documentation
@@ -294,17 +296,19 @@ useIntentNavigation(uploadIntent, {
 ✅ Complete API documentation  
 ✅ Working examples provided  
 ✅ Compatible with Vue 3.3+  
-✅ TypeScript declarations included  
+✅ TypeScript declarations included
 
 ## 🆘 Troubleshooting
 
 ### Tests not running?
+
 ```bash
 npm install
 npm test
 ```
 
 ### Build errors?
+
 ```bash
 npm run type-check
 # Fix any TypeScript errors
@@ -312,10 +316,12 @@ npm run build
 ```
 
 ### Import errors?
+
 Make sure you're importing from the correct path:
+
 ```typescript
-import { useIntent } from 'vue-intent'  // ✅ Correct
-import { useIntent } from 'vue-intent/src/composables/useIntent'  // ❌ Wrong
+import { useIntent } from 'vue-intention' // ✅ Correct
+import { useIntent } from 'vue-intention/src/composables/useIntent' // ❌ Wrong
 ```
 
 ## 📧 Support

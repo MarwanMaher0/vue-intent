@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Initial implementation of vue-intent package
+
+- Initial implementation of vue-intention package
 - `useIntent` composable for consuming intent state
 - `useIntentNavigation` composable for navigation protection
 - `useIntentState` composable for granular state access
@@ -23,25 +24,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic example application
 
 ### Changed
+
 - N/A (initial release)
 
 ### Deprecated
+
 - N/A
 
 ### Removed
+
 - N/A
 
 ### Fixed
+
 - N/A
 
 ### Security
+
 - N/A
 
 ## [0.1.0] - 2025-01-XX
 
-Initial release of vue-intent - Vue 3 adapter for Behavior Runtime Core.
+Initial release of vue-intention - Vue 3 adapter for Behavior Runtime Core.
 
 ### Features
+
 - Intent-aware state management
 - Permission handling
 - Navigation protection

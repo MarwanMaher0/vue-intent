@@ -23,17 +23,17 @@ export interface UseIntentStateReturn {
 
 /**
  * Composable for granular access to intent state properties
- * 
+ *
  * @param intent - The intent to track
  * @returns Detailed state information
- * 
+ *
  * @example
  * ```vue
  * <script setup>
- * import { useIntentState } from 'vue-intent'
- * 
+ * import { useIntentState } from 'vue-intention'
+ *
  * const { current, transitions, isIn, duration } = useIntentState(intent)
- * 
+ *
  * console.log(current.value) // 'in-progress'
  * console.log(isIn(['active', 'in-progress'])) // true
  * console.log(duration.value) // 5000 (ms)

@@ -56,15 +56,15 @@ export interface UseIntentReturn {
 
 /**
  * Primary composable for consuming intent state in Vue components
- * 
+ *
  * @param intent - The intent to track
  * @returns Reactive intent state and control methods
- * 
+ *
  * @example
  * ```vue
  * <script setup>
- * import { useIntent } from 'vue-intent'
- * 
+ * import { useIntent } from 'vue-intention'
+ *
  * const createIntent = createIntent({ id: 'create-trademark' })
  * const { isActive, message, start, complete } = useIntent(createIntent)
  * </script>

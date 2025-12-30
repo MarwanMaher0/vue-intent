@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <h1>Vue Intent - Basic Example</h1>
-    
+
     <div class="example-section">
       <h2>1. Simple Button Action</h2>
       <IntentGuard :intent="saveIntent">
@@ -12,13 +12,13 @@
           <p class="error">You don't have permission to save</p>
         </template>
       </IntentGuard>
-      
-      <IntentMessage 
-        :intent="saveIntent" 
+
+      <IntentMessage
+        :intent="saveIntent"
         :type="saveState.isFailed ? 'error' : 'success'"
         show-when="always"
       />
-      
+
       <div class="state-info">
         <p><strong>State:</strong> {{ saveState.state }}</p>
         <p><strong>Allowed:</strong> {{ saveState.allowed }}</p>
@@ -28,68 +28,55 @@
 
     <div class="example-section">
       <h2>2. Multi-Step Process</h2>
-      
-      <IntentProgress 
+
+      <IntentProgress
         :intent="processIntent"
         :steps="processSteps"
         :show-labels="true"
         :linear="true"
       />
-      
+
       <div class="step-controls">
-        <button 
-          @click="startProcess" 
+        <button
+          @click="startProcess"
           :disabled="processState.isActive"
           v-if="!processState.isActive && !processState.isCompleted"
         >
           Start Process
         </button>
-        
-        <button 
-          @click="nextStep" 
-          :disabled="!processState.isActive"
-          v-if="processState.isActive"
-        >
+
+        <button @click="nextStep" :disabled="!processState.isActive" v-if="processState.isActive">
           Next Step
         </button>
-        
-        <button 
+
+        <button
           @click="completeProcess"
           v-if="currentStep === processSteps.length - 1 && processState.isActive"
         >
           Complete
         </button>
-        
-        <button 
-          @click="resetProcess"
-          v-if="processState.isCompleted"
-        >
-          Reset
-        </button>
+
+        <button @click="resetProcess" v-if="processState.isCompleted">Reset</button>
       </div>
-      
+
       <IntentMessage :intent="processIntent" type="info" show-when="active" />
     </div>
 
     <div class="example-section">
       <h2>3. File Upload with Navigation Protection</h2>
-      
-      <input 
-        type="file" 
-        @change="handleFileSelect"
-        :disabled="uploadState.isActive"
-      />
-      
-      <button 
-        v-intent:loading="uploadIntent" 
+
+      <input type="file" @change="handleFileSelect" :disabled="uploadState.isActive" />
+
+      <button
+        v-intent:loading="uploadIntent"
         @click="simulateUpload"
         :disabled="!selectedFile || uploadState.isActive"
       >
         {{ uploadState.isActive ? 'Uploading...' : 'Upload File' }}
       </button>
-      
+
       <IntentMessage :intent="uploadIntent" type="info" />
-      
+
       <div v-if="protectionActive" class="warning">
         ⚠️ Navigation protection is active - don't refresh the page!
       </div>
@@ -97,13 +84,13 @@
 
     <div class="example-section">
       <h2>4. State Tracking</h2>
-      
+
       <button @click="trackingIntent.start()">Start</button>
       <button @click="trackingIntent.progress()">Progress</button>
       <button @click="trackingIntent.wait()">Wait</button>
       <button @click="trackingIntent.complete()">Complete</button>
       <button @click="trackingIntent.reset()">Reset</button>
-      
+
       <div class="state-tracking">
         <p><strong>Current:</strong> {{ trackingState.current }}</p>
         <p><strong>Previous:</strong> {{ trackingState.previous || 'none' }}</p>
@@ -130,7 +117,7 @@ import {
 function createIntent(config: any) {
   let state = 'idle'
   const subscribers: Array<(s: string) => void> = []
-  
+
   return {
     id: config.id,
     state: () => state,
@@ -216,7 +203,7 @@ function startProcess() {
 async function nextStep() {
   currentStep.value++
   processState.progress(`step-${currentStep.value}`)
-  
+
   if (currentStep.value >= processSteps.length - 1) {
     // Last step
   }
@@ -248,13 +235,13 @@ function handleFileSelect(event: Event) {
 
 async function simulateUpload() {
   uploadState.start()
-  
+
   // Simulate upload progress
   for (let i = 0; i <= 100; i += 10) {
     await new Promise(resolve => setTimeout(resolve, 300))
     uploadState.progress(`${i}% uploaded`)
   }
-  
+
   uploadState.complete()
 }
 
@@ -268,7 +255,10 @@ const trackingState = reactive(useIntentState(trackingIntent))
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 .example-section {
@@ -342,7 +332,7 @@ button:disabled {
   margin: 20px 0;
 }
 
-input[type="file"] {
+input[type='file'] {
   margin: 10px 0;
 }
 </style>

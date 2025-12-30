@@ -1,8 +1,8 @@
-# vue-intent
+# vue-intention
 
 > Vue 3 adapter for Behavior Runtime Core - Build intent-aware, state-driven applications with built-in permission handling and navigation protection.
 
-[![npm version](https://img.shields.io/npm/v/vue-intent.svg)](https://www.npmjs.com/package/vue-intent)
+[![npm version](https://img.shields.io/npm/v/vue-intention.svg)](https://www.npmjs.com/package/vue-intention)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -21,7 +21,7 @@
 ## Installation
 
 ```bash
-npm install vue-intent behavior-runtime-core
+npm install vue-intention behavior-runtime-core
 ```
 
 ## Quick Start
@@ -43,16 +43,10 @@ const createTrademarkIntent = createIntent({
 
 ```vue
 <script setup lang="ts">
-import { useIntent } from 'vue-intent'
+import { useIntent } from 'vue-intention'
 
-const { 
-  isActive, 
-  isCompleted, 
-  allowed, 
-  message, 
-  start, 
-  complete 
-} = useIntent(createTrademarkIntent)
+const { isActive, isCompleted, allowed, message, start, complete } =
+  useIntent(createTrademarkIntent)
 
 async function handleCreate() {
   start()
@@ -67,13 +61,10 @@ async function handleCreate() {
 
 <template>
   <div>
-    <button 
-      @click="handleCreate" 
-      :disabled="!allowed || isActive"
-    >
+    <button @click="handleCreate" :disabled="!allowed || isActive">
       {{ isActive ? 'Creating...' : 'Create Trademark' }}
     </button>
-    
+
     <p v-if="message">{{ message }}</p>
   </div>
 </template>
@@ -83,7 +74,7 @@ async function handleCreate() {
 
 ```typescript
 import { createApp } from 'vue'
-import { VueIntentPlugin } from 'vue-intent'
+import { VueIntentPlugin } from 'vue-intention'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -129,6 +120,7 @@ idle → started → in-progress → waiting → completed
 Primary composable for consuming intent state.
 
 **Returns:**
+
 ```typescript
 {
   state: Ref<IntentState>
@@ -151,9 +143,10 @@ Primary composable for consuming intent state.
 ```
 
 **Example:**
+
 ```vue
 <script setup>
-import { useIntent } from 'vue-intent'
+import { useIntent } from 'vue-intention'
 
 const { isActive, message, start, complete } = useIntent(myIntent)
 </script>
@@ -164,6 +157,7 @@ const { isActive, message, start, complete } = useIntent(myIntent)
 Protect navigation during active intents.
 
 **Parameters:**
+
 ```typescript
 {
   confirmMessage?: string
@@ -173,6 +167,7 @@ Protect navigation during active intents.
 ```
 
 **Returns:**
+
 ```typescript
 {
   canLeave: ComputedRef<boolean>
@@ -181,9 +176,10 @@ Protect navigation during active intents.
 ```
 
 **Example:**
+
 ```vue
 <script setup>
-import { useIntent, useIntentNavigation } from 'vue-intent'
+import { useIntent, useIntentNavigation } from 'vue-intention'
 
 const uploadIntent = createIntent({ id: 'upload-file' })
 const { isActive } = useIntent(uploadIntent)
@@ -202,6 +198,7 @@ useIntentNavigation(uploadIntent, {
 Granular access to intent state properties.
 
 **Returns:**
+
 ```typescript
 {
   current: ComputedRef<IntentState>
@@ -213,9 +210,10 @@ Granular access to intent state properties.
 ```
 
 **Example:**
+
 ```vue
 <script setup>
-import { useIntentState } from 'vue-intent'
+import { useIntentState } from 'vue-intention'
 
 const { current, transitions, isIn, duration } = useIntentState(intent)
 
@@ -232,15 +230,18 @@ console.log(duration.value) // 5000 (ms in current state)
 Conditionally render content based on permissions.
 
 **Props:**
+
 - `intent` (Intent, required) - The intent to check
 - `fallback` (String) - Fallback message
 - `invert` (Boolean) - Invert the permission check
 
 **Slots:**
+
 - `default` - Content when allowed
 - `fallback` - Content when not allowed
 
 **Example:**
+
 ```vue
 <IntentGuard :intent="createIntent">
   <button>Create Trademark</button>
@@ -255,18 +256,16 @@ Conditionally render content based on permissions.
 Display human-readable intent messages.
 
 **Props:**
+
 - `intent` (Intent, required)
 - `type` ('info' | 'warning' | 'error' | 'success')
 - `showWhen` ('always' | 'active' | 'blocked' | 'failed')
 - `customClass` (String)
 
 **Example:**
+
 ```vue
-<IntentMessage 
-  :intent="uploadIntent" 
-  type="info"
-  show-when="active"
-/>
+<IntentMessage :intent="uploadIntent" type="info" show-when="active" />
 ```
 
 #### `<IntentProgress>`
@@ -274,14 +273,16 @@ Display human-readable intent messages.
 Visual progress indicator for multi-step intents.
 
 **Props:**
+
 - `intent` (Intent, required)
 - `steps` (Array<{id: string, label: string}>)
 - `showLabels` (Boolean, default: true)
 - `linear` (Boolean, default: true)
 
 **Example:**
+
 ```vue
-<IntentProgress 
+<IntentProgress
   :intent="multiStepIntent"
   :steps="[
     { id: 'step-1', label: 'Upload' },
@@ -298,6 +299,7 @@ Visual progress indicator for multi-step intents.
 Bind intent state to DOM elements.
 
 **Usage:**
+
 ```vue
 <!-- Default behavior: disable when not allowed -->
 <button v-intent="createIntent">Create</button>
@@ -313,6 +315,7 @@ Bind intent state to DOM elements.
 ```
 
 **Modifiers:**
+
 - `disabled` - Disable element when not allowed or active
 - `loading` - Add loading class when active
 - `hidden` - Hide element when not allowed
@@ -324,7 +327,7 @@ Bind intent state to DOM elements.
 ```vue
 <script setup>
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent } from 'vue-intent'
+import { useIntent } from 'vue-intention'
 
 const saveIntent = createIntent({ id: 'save-data' })
 const { isActive, start, complete, fail } = useIntent(saveIntent)
@@ -352,7 +355,7 @@ async function handleSave() {
 ```vue
 <script setup>
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent, useIntentNavigation } from 'vue-intent'
+import { useIntent, useIntentNavigation } from 'vue-intention'
 
 const registrationIntent = createIntent({
   id: 'user-registration',
@@ -370,10 +373,10 @@ const steps = [
 
 async function submitStep(stepId) {
   if (!isActive.value) start()
-  
+
   await api.submitStep(stepId)
   progress(stepId)
-  
+
   if (stepId === 'verify') {
     complete()
   }
@@ -383,9 +386,9 @@ async function submitStep(stepId) {
 <template>
   <div>
     <IntentProgress :intent="registrationIntent" :steps="steps" />
-    
+
     <IntentMessage :intent="registrationIntent" show-when="active" />
-    
+
     <!-- Form steps here -->
   </div>
 </template>
@@ -406,9 +409,7 @@ const deleteIntent = createIntent({
 
 <template>
   <IntentGuard :intent="deleteIntent">
-    <button v-intent:disabled="deleteIntent" @click="handleDelete">
-      Delete Item
-    </button>
+    <button v-intent:disabled="deleteIntent" @click="handleDelete">Delete Item</button>
     <template #fallback>
       <span class="text-muted">Delete permission required</span>
     </template>
@@ -421,7 +422,7 @@ const deleteIntent = createIntent({
 ```vue
 <script setup>
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent, useIntentNavigation } from 'vue-intent'
+import { useIntent, useIntentNavigation } from 'vue-intention'
 
 const uploadIntent = createIntent({
   id: 'file-upload',
@@ -436,13 +437,13 @@ useIntentNavigation(uploadIntent, {
 
 async function uploadFile(file) {
   start()
-  
+
   const formData = new FormData()
   formData.append('file', file)
-  
+
   try {
     await api.upload(formData, {
-      onProgress: (percent) => {
+      onProgress: percent => {
         progress(`${percent}% uploaded`)
       }
     })
@@ -466,16 +467,16 @@ async function uploadFile(file) {
 Full TypeScript support with proper type inference:
 
 ```typescript
-import { useIntent } from 'vue-intent'
-import type { Intent, IntentState, UseIntentReturn } from 'vue-intent'
+import { useIntent } from 'vue-intention'
+import type { Intent, IntentState, UseIntentReturn } from 'vue-intention'
 
 const myIntent: Intent = createIntent({ id: 'my-action' })
 
 const {
-  state,      // Ref<IntentState>
-  isActive,   // ComputedRef<boolean>
-  message,    // ComputedRef<string>
-  start       // () => void
+  state, // Ref<IntentState>
+  isActive, // ComputedRef<boolean>
+  message, // ComputedRef<string>
+  start // () => void
 }: UseIntentReturn = useIntent(myIntent)
 ```
 

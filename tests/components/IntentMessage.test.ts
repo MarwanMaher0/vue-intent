@@ -6,7 +6,7 @@ import type { Intent, IntentState } from '../../src/types'
 // Mock intent factory
 const createMockIntent = (state: IntentState = 'idle', message = 'Test message'): Intent => {
   const subscribers: Array<(state: IntentState) => void> = []
-  
+
   return {
     id: 'test-intent',
     state: () => state,
@@ -48,7 +48,7 @@ describe('IntentMessage', () => {
 
   it('should apply correct type class', () => {
     const intent = createMockIntent()
-    
+
     const wrapperInfo = mount(IntentMessage, {
       props: { intent, type: 'info' }
     })
@@ -86,7 +86,7 @@ describe('IntentMessage', () => {
 
   it('should set correct aria-live attribute', () => {
     const intent = createMockIntent()
-    
+
     const wrapperError = mount(IntentMessage, {
       props: { intent, type: 'error' }
     })

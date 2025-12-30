@@ -52,7 +52,7 @@ export type __VueIntentExportedTypes =
   | UseIntentNavigationReturn
   | UseIntentStateReturn
 
-export const __vueIntentExportCheck = {
+const __vueIntentExportCheck = {
   useIntent,
   useIntentNavigation,
   useIntentState,
@@ -62,3 +62,5 @@ export const __vueIntentExportCheck = {
   vIntent,
   VueIntentPlugin
 }
+
+void __vueIntentExportCheck
