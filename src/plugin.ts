@@ -14,7 +14,7 @@ import { vIntent } from './directives/v-intent'
  * @example
  * ```typescript
  * import { createApp } from 'vue'
- * import { VueIntentPlugin } from 'vue-intention'
+ * import { VueIntentPlugin } from 'vue-intention-core'
  *
  * const app = createApp(App)
  * app.use(VueIntentPlugin, {

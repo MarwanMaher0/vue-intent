@@ -1,8 +1,8 @@
-# vue-intention
+# vue-intention-core
 
 > Vue 3 adapter for Behavior Runtime Core - Build intent-aware, state-driven applications with built-in permission handling and navigation protection.
 
-[![npm version](https://img.shields.io/npm/v/vue-intention.svg)](https://www.npmjs.com/package/vue-intention)
+[![npm version](https://img.shields.io/npm/v/vue-intention-core.svg)](https://www.npmjs.com/package/vue-intention-core)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
@@ -21,8 +21,13 @@
 ## Installation
 
 ```bash
-npm install vue-intention behavior-runtime-core
+npm install vue-intention-core behavior-runtime-core
 ```
+
+## Examples
+
+- Basic example: `npm run dev`
+- Vue Router example: `npx vite --config vite.example.router.config.ts`
 
 ## Quick Start
 
@@ -43,9 +48,9 @@ const createTrademarkIntent = createIntent({
 
 ```vue
 <script setup lang="ts">
-import { useIntent } from 'vue-intention'
+import { useIntent } from 'vue-intention-core'
 
-const { isActive, isCompleted, allowed, message, start, complete } =
+const { isActive, isCompleted, allowed, message, start, complete, fail } =
   useIntent(createTrademarkIntent)
 
 async function handleCreate() {
@@ -74,7 +79,7 @@ async function handleCreate() {
 
 ```typescript
 import { createApp } from 'vue'
-import { VueIntentPlugin } from 'vue-intention'
+import { VueIntentPlugin } from 'vue-intention-core'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -146,7 +151,7 @@ Primary composable for consuming intent state.
 
 ```vue
 <script setup>
-import { useIntent } from 'vue-intention'
+import { useIntent } from 'vue-intention-core'
 
 const { isActive, message, start, complete } = useIntent(myIntent)
 </script>
@@ -179,7 +184,7 @@ Protect navigation during active intents.
 
 ```vue
 <script setup>
-import { useIntent, useIntentNavigation } from 'vue-intention'
+import { useIntent, useIntentNavigation } from 'vue-intention-core'
 
 const uploadIntent = createIntent({ id: 'upload-file' })
 const { isActive } = useIntent(uploadIntent)
@@ -213,7 +218,7 @@ Granular access to intent state properties.
 
 ```vue
 <script setup>
-import { useIntentState } from 'vue-intention'
+import { useIntentState } from 'vue-intention-core'
 
 const { current, transitions, isIn, duration } = useIntentState(intent)
 
@@ -327,7 +332,7 @@ Bind intent state to DOM elements.
 ```vue
 <script setup>
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent } from 'vue-intention'
+import { useIntent } from 'vue-intention-core'
 
 const saveIntent = createIntent({ id: 'save-data' })
 const { isActive, start, complete, fail } = useIntent(saveIntent)
@@ -355,7 +360,7 @@ async function handleSave() {
 ```vue
 <script setup>
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent, useIntentNavigation } from 'vue-intention'
+import { useIntent, useIntentNavigation } from 'vue-intention-core'
 
 const registrationIntent = createIntent({
   id: 'user-registration',
@@ -422,7 +427,7 @@ const deleteIntent = createIntent({
 ```vue
 <script setup>
 import { createIntent } from 'behavior-runtime-core'
-import { useIntent, useIntentNavigation } from 'vue-intention'
+import { useIntent, useIntentNavigation } from 'vue-intention-core'
 
 const uploadIntent = createIntent({
   id: 'file-upload',
@@ -467,8 +472,8 @@ async function uploadFile(file) {
 Full TypeScript support with proper type inference:
 
 ```typescript
-import { useIntent } from 'vue-intention'
-import type { Intent, IntentState, UseIntentReturn } from 'vue-intention'
+import { useIntent } from 'vue-intention-core'
+import type { Intent, IntentState, UseIntentReturn } from 'vue-intention-core'
 
 const myIntent: Intent = createIntent({ id: 'my-action' })
 
@@ -550,7 +555,7 @@ async function handleAction() {
 
 ## Related Packages
 
-- [behavior-runtime-core](https://github.com/your-org/behavior-runtime-core) - Core framework-agnostic runtime
+- [behavior-runtime-core](https://www.npmjs.com/package/behavior-runtime-core) - Core framework-agnostic runtime
 
 ## Contributing
 
@@ -562,4 +567,4 @@ MIT © 2025
 
 ## Acknowledgments
 
-Built on top of [Behavior Runtime Core](https://github.com/your-org/behavior-runtime-core), a framework-agnostic runtime for intent-aware behavior.
+Built on top of [Behavior Runtime Core](https://www.npmjs.com/package/behavior-runtime-core), a framework-agnostic runtime for intent-aware behavior.

@@ -22,7 +22,7 @@ export interface UseIntentNavigationReturn {
  *
  * @example
  * ```vue
- * <script setup>
+ * import { useIntent, useIntentNavigation } from 'vue-intention-core'
  * import { useIntent, useIntentNavigation } from 'vue-intention'
  *
  * const uploadIntent = createIntent({ id: 'upload-file' })
