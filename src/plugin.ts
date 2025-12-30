@@ -10,12 +10,12 @@ import { vIntent } from './directives/v-intent'
 
 /**
  * Vue Intent Plugin for global registration
- * 
+ *
  * @example
  * ```typescript
  * import { createApp } from 'vue'
  * import { VueIntentPlugin } from 'vue-intention'
- * 
+ *
  * const app = createApp(App)
  * app.use(VueIntentPlugin, {
  *   router, // optional
